@@ -7,6 +7,11 @@ include: "/views/**/*.view.lkml"
 # include all the explores
 include: "/explores/**/*.explore.lkml"
 
+##test explores
+
+explore: ndt_customer_order_history {}
+explore: sdt_customer_order_history {}
+
 datagroup: mock_lookml_codev_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"

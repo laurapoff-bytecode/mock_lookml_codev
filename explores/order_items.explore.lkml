@@ -1,4 +1,8 @@
-include: "/views/**/*.view.lkml"
+include: "/views/order_items.view.lkml"
+include: "/views/inventory_items.view.lkml"
+include: "/views/products.view.lkml"
+include: "/views/users.view.lkml"
+include: "/views/distribution_centers.view.lkml"
 
 explore: order_items {
   join: users {
