@@ -96,6 +96,12 @@ view: order_items {
     type: count
     filters: [status: "Returned"]
   }
+
+measure: count_of_orders {
+  type: count_distinct
+  sql_distinct_key: ${order_id} ;;
+  sql: ${order_id} ;;
+}
   measure: total_sale_price {
     type: sum
     sql: ${sale_price} ;;  }

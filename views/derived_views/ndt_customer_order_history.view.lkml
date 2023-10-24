@@ -5,6 +5,7 @@ view: ndt_customer_order_history {
       column: count {}
       column: total_sale_price {}
     }
+    persist_for: "4 hours"
   }
   dimension: user_id {
     description: ""
