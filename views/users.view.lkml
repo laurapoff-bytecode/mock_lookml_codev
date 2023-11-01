@@ -26,12 +26,7 @@ view: users {
   # measures for this dimension, but you can also add measures of many different aggregates.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
 
-  measure: total_age {
-    type: sum
-    sql: ${age} ;;  }
-  measure: average_age {
-    type: average
-    sql: ${age} ;;  }
+
 
   dimension: city {
     type: string
@@ -60,6 +55,11 @@ view: users {
   dimension: first_name {
     type: string
     sql: ${TABLE}.first_name ;;
+  }
+
+  dimension: full_name {
+    type: string
+    sql: CONCAT(${first_name},' ',${last_name}) ;;
   }
 
   dimension: gender {
@@ -105,4 +105,11 @@ view: users {
     type: count
     drill_fields: [id, last_name, first_name, order_items.count, events.count]
   }
+
+  measure: total_age {
+    type: sum
+    sql: ${age} ;;  }
+  measure: average_age {
+    type: average
+    sql: ${age} ;;  }
 }

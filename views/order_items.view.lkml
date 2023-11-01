@@ -59,16 +59,14 @@ view: order_items {
     sql: ${TABLE}.sale_price ;;
   }
 
+ dimension: status {
+   type: string
+  sql: ${TABLE}.status ;;
+ }
   # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
   # measures for this dimension, but you can also add measures of many different aggregates.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
 
-  measure: total_sale_price {
-    type: sum
-    sql: ${sale_price} ;;  }
-  measure: average_sale_price {
-    type: average
-    sql: ${sale_price} ;;  }
 
   dimension_group: shipped {
     type: time
@@ -86,18 +84,41 @@ view: order_items {
     drill_fields: [detail*]
   }
 
+  measure: count_of_orders {
+    type: count_distinct
+    sql_distinct_key: ${order_id} ;;
+    sql: ${order_id} ;;
+  }
+
+  measure: count_of_returned_items {
+    type: count
+    filters: [status: "Returned"]
+  }
+  measure: average_sale_price {
+    type: average
+    sql: ${sale_price} ;;  }
+
+  measure: total_sale_price {
+    type: sum
+    sql: ${sale_price} ;;
+    value_format_name: usd
+    }
+
+
+
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-	id,
-	users.last_name,
-	users.id,
-	users.first_name,
-	inventory_items.id,
-	inventory_items.product_name,
-	products.name,
-	products.id
-	]
+  id,
+  users.last_name,
+  users.id,
+  users.first_name,
+  inventory_items.id,
+  inventory_items.product_name,
+  products.name,
+  products.id
+  ]
   }
 
 }
