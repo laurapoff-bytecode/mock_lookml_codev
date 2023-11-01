@@ -86,7 +86,6 @@ view: order_items {
 
   measure: count_of_orders {
     type: count_distinct
-    sql_distinct_key: ${order_id} ;;
     sql: ${order_id} ;;
   }
 
