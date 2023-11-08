@@ -1,6 +1,6 @@
 view: sdt_customer_order_history {
     derived_table: {
-      sql: SELECT user_id , COUNT(order_id) AS Total_Orders, SUM (sale_price) AS Total_Sales
+      sql: SELECT user_id , COUNT(DISTINCT order_id) AS Total_Orders, SUM (sale_price) AS Total_Sales
                     FROM `looker-partners.thelook.order_items`
                     GROUP BY user_id ; ;;
     }
