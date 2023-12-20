@@ -33,10 +33,6 @@ view: distribution_centers {
     type: average
     sql: ${latitude} ;;  }
 
-  dimension: longitude {
-    type: number
-    sql: ${TABLE}.longitude ;;
-  }
 
   dimension: name {
     type: string
