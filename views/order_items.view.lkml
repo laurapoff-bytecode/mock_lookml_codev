@@ -70,6 +70,11 @@ view: order_items {
     type: average
     sql: ${sale_price} ;;  }
 
+  measure: count_of_orders {
+    type: count_distinct
+    sql: ${order_id} ;;
+    }
+
   dimension_group: shipped {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
@@ -89,15 +94,15 @@ view: order_items {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-	id,
-	users.last_name,
-	users.id,
-	users.first_name,
-	inventory_items.id,
-	inventory_items.product_name,
-	products.name,
-	products.id
-	]
+  id,
+  users.last_name,
+  users.id,
+  users.first_name,
+  inventory_items.id,
+  inventory_items.product_name,
+  products.name,
+  products.id
+  ]
   }
 
 }
