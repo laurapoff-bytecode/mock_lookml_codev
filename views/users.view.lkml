@@ -52,6 +52,11 @@ view: users {
     sql: ${TABLE}.created_at ;;
   }
 
+dimension: days_since_singup {
+  type: number
+  sql: DATE_DIFF(CURRENT_DATE, ${created_date}, DAY) ;;
+}
+
   dimension: email {
     type: string
     sql: ${TABLE}.email ;;
@@ -72,6 +77,10 @@ view: users {
     sql: ${TABLE}.last_name ;;
   }
 
+dimension: full_name {
+  type: string
+  sql: CONCAT(${first_name}, ' ', ${last_name}) ;;
+}
   dimension: latitude {
     type: number
     sql: ${TABLE}.latitude ;;

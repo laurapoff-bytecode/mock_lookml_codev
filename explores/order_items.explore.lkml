@@ -5,6 +5,7 @@ include: "/views/inventory_items.view.lkml"
 include: "/views/order_items.view.lkml"
 include: "/views/products.view.lkml"
 include: "/views/users.view.lkml"
+include: "/views/derived_views/order_facts.view.lkml"
 
 explore: order_items {
   join: users {
@@ -30,4 +31,10 @@ explore: order_items {
     sql_on: ${products.distribution_center_id} = ${distribution_centers.id} ;;
     relationship: many_to_one
   }
+
+join: order_facts {
+  type: left_outer
+  sql_on: ${order_items.order_id} = ${order_facts.order_id} ;;
+  relationship: many_to_one
+}
 }
