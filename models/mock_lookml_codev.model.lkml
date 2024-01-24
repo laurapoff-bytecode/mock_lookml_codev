@@ -2,10 +2,12 @@
 connection: "looker_partner_demo"
 
 # include all the views
-include: "/views/**/*.view.lkml"
+# include: "/views/**/*.view.lkml"
 
 # include all the explores
-include: "/explores/**/*.explore.lkml"
+# include: "/explores/**/*.explore.lkml"
+
+include: "/explores/order_items.explore.lkml"
 
 datagroup: mock_lookml_codev_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
