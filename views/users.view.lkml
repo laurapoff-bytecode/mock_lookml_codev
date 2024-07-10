@@ -17,8 +17,6 @@ view: users {
     sql: ${TABLE}.age ;;
   }
 
-
-
   measure: total_age {
     type: sum
     sql: ${age} ;;  }
