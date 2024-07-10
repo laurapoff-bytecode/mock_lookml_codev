@@ -14,24 +14,13 @@ view: order_items {
     default_value: "Quarterly"
   }
 
-  dimension: time_filtering {
-    label_from_parameter: time_grain
-    type: date_time
-    sql:
-    CASE
-      WHEN {% parameter time_grain %} = "Quarterly" THEN datetime_trunc(${created_raw}, quarter)
-      WHEN {% parameter time_grain %} = "Monthly" THEN datetime_trunc(${created_raw}, month)
-      WHEN {% parameter time_grain %} = "Weekly" THEN datetime_trunc(${created_raw}, week)
-      WHEN {% parameter time_grain %} = "Daily" THEN datetime_trunc(${created_raw}, day)
-      ELSE NULL
-    END;;
-  }
 
   dimension: id {
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
   }
+
 
   dimension_group: created {
     type: time
@@ -62,6 +51,13 @@ view: order_items {
     sql: ${TABLE}.product_id ;;
   }
 
+  dimension: product_link {
+    sql: ${product_id} ;;
+    link: {
+      url: "https://www.altostrat.com/product_images/{{ value }}.jpg"
+    }
+  }
+
   dimension_group: returned {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
@@ -78,7 +74,8 @@ view: order_items {
     sql: ${sale_price} ;;  }
   measure: average_sale_price {
     type: average
-    sql: ${sale_price} ;;  }
+    sql: ${sale_price} ;;
+    value_format: "$#,##0.00"}
 
   dimension_group: shipped {
     type: time
