@@ -14,6 +14,19 @@ view: order_items {
     default_value: "Quarterly"
   }
 
+  dimension: time_filtering {
+    label_from_parameter: time_grain
+    type: date_time
+    sql:
+    CASE
+      WHEN {% parameter time_grain %} = "Quarterly" THEN datetime_trunc(${created_raw}, quarter)
+      WHEN {% parameter time_grain %} = "Monthly" THEN datetime_trunc(${created_raw}, month)
+      WHEN {% parameter time_grain %} = "Weekly" THEN datetime_trunc(${created_raw}, week)
+      WHEN {% parameter time_grain %} = "Daily" THEN datetime_trunc(${created_raw}, day)
+      ELSE NULL
+    END;;
+  }
+
   dimension: id {
     primary_key: yes
     type: number
