@@ -13,3 +13,9 @@ datagroup: mock_lookml_codev_default_datagroup {
 }
 
 persist_with: mock_lookml_codev_default_datagroup
+
+explore: distribution_centers {
+  view_name: distribution_centers
+  label: "Distribution Center Explore"
+  # The normal contents of the Explore follow
+}
