@@ -5,6 +5,14 @@ view: order_items {
   sql_table_name: `thelook.order_items` ;;
   drill_fields: [id]
 
+  parameter: time_grain {
+    type: string
+    allowed_value: { value: "Daily"}
+    allowed_value: { value: "Weekly"}
+    allowed_value: { value: "Monthly"}
+    allowed_value: { value: "Quarterly"}
+    default_value: "Quarterly"
+  }
 
   dimension: id {
     primary_key: yes
