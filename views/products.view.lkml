@@ -15,6 +15,8 @@ view: products {
   dimension: brand {
     type: string
     sql: ${TABLE}.brand ;;
+    link: {label: "Link to brand dashboard"
+      url: "https://looker.bytecode.io/dashboards/pK378si9QKGEi1b06siH4m?Brand={{ value | url_encode }}"}
 
   }
 
